@@ -1,35 +1,30 @@
-# 🎬 CIHUYNIME
-**Aplikasi Streaming Anime Android - Cepat, Ringan, dan Tanpa Ribet.**
+# 🎉 CihuyNime v2.4 Release
 
-CIHUYNIME hadir untuk memberikan pengalaman nonton anime terbaik langsung dari perangkat Android kamu tanpa gangguan iklan yang mengganggu.
-
----
-
-## ✨ Fitur Unggulan
-
-* **🚫 Free Ads:** Nonton sepuasnya tanpa gangguan iklan (No Ads).
-* **🌍 Multi Sub:** Tersedia berbagai pilihan subtitle (Indonesia, English, dll).
-* **⚡ High Performance:** Loading cepat dan hemat kuota.
-* **📱 User Friendly:** Antarmuka simpel dan mudah digunakan bahkan untuk pemula.
+A brand new update is here! **CihuyNime v2.4** brings major quality-of-life improvements, beautiful UI enhancements, and robust cloud synchronization to level up your anime streaming experience. ✨
 
 ---
 
-## 📥 Cara Instalasi
+## 🚀 What's New in v2.4?
 
-1.  Buka tab [Releases](https://github.com/ZertMC/cihuynime/releases/latest) di repository ini.
-2.  Download file **CIHUYNIME.apk**.
-3.  Buka file APK yang sudah didownload.
-4.  Jika muncul peringatan, izinkan *"Install from Unknown Sources"* pada pengaturan HP kamu.
-5.  Klik **Install** dan tunggu sampai selesai.
-6.  Enjoy your anime! 🍿
+### ☁️ Core & Synchronization
+* **Cloud Watch History:** Your watch progress is now fully synchronized to the cloud! Never lose your place again—your history is safely backed up to your account across devices.
+* **Bookmarks Transition:** The old 'Favorites' terminology has been globally unified and officially updated to **Bookmarks** for a cleaner, more intuitive experience.
+
+### 🎨 UI & User Experience
+* **Anime Cards Profile:** Watch History and Bookmarks inside User Profiles have been upgraded into beautiful, highly visual **Anime Cards**.
+* **Premium Profile UI:** Enjoy an upgraded User Profile layout featuring a taller, more immersive banner and an enlarged, prominent avatar setup.
+* **Profile Interactivity:** Tap directly on user avatars or usernames within the Comments Section to seamlessly view their public profiles.
+* **History Quick Play:** No more navigating through menus! Tapping an anime inside your Watch History card will instantly launch the player and resume the exact episode you left off on.
+
+### ⚙️ Backend Enhancements
+* **High-Res Media Models:** Extended MongoDB models and routes to store and serve high-resolution cover images natively for History items.
 
 ---
 
-## 🛠️ Tech Stack
-* **Language:** Kotlin / Java (Android)
-* **Backend:** Node.js / Hono / Golang
-* **Database:** MongoDB / PostgreSQL
+## 🛠️ Bug Fixes & Stability
+* Fixed a critical `NullPointerException` inside the `HistoryManager`.
+* Resolved broken backend profile routing issues to ensure seamless user data fetching.
 
 ---
 
-> **Note:** Aplikasi ini dibuat untuk tujuan pembelajaran dan riset. Semua konten video berasal dari pihak ketiga.
+> 🔥 **Developer Note:** Keep your eyes peeled for more exciting features in the next update. Happy binging, minna-san! 🚀
