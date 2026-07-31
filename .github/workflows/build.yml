@@ -22,7 +22,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
       with:
-        repository: 'ZertCihuyy/CIHUYNIME-TV'
+        repository: 'ZertCihuyy/CIHUYNIME-APK'
         token: ${{ secrets.MY_PAT }}
         ref: 'main'
 
