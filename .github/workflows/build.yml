@@ -1,4 +1,4 @@
-name: Build and Release CIHUYNIME Mobile
+Name: Build and Release CIHUYNIME Mobile
 
 on:
   workflow_dispatch:
@@ -36,28 +36,42 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    # Ganti task ini jika pakai Product Flavor (misal: ./gradlew assembleMobileRelease)
+    - name: Extract App Version
+      id: get_version
+      run: |
+        # Mengambil versionName dari build.gradle / build.gradle.kts
+        VERSION=$(grep -E 'versionName' app/build.gradle* | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
+        
+        # Fallback jika gagal membaca file gradle
+        if [ -z "$VERSION" ]; then
+          VERSION="2.4"
+        fi
+
+        echo "VERSI=$VERSION" >> $GITHUB_ENV
+        echo "Versi terdeteksi: $VERSION"
+
     - name: Build Mobile APK
       run: ./gradlew assembleDebug
 
     - name: Rename APK Output
       run: |
         mkdir -p release-apk
-        cp app/build/outputs/apk/debug/*.apk release-apk/CIHUYNIME-v${{ github.run_number }}.apk
+        # Menghasilkan output persis cihuynime-v{versi}.apk
+        cp app/build/outputs/apk/debug/*.apk release-apk/cihuynime-v${{ env.VERSI }}.apk
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: CIHUYNIME-Mobile-APK
-        path: release-apk/*.apk
+        name: cihuynime-v${{ env.VERSI }}
+        path: release-apk/cihuynime-v${{ env.VERSI }}.apk
         retention-days: 7
 
     - name: Publish GitHub Release
       uses: softprops/action-gh-release@v2
       with:
-        files: release-apk/*.apk
-        tag_name: mobile ${{ github.run_number }}
-        name: "CIHUYNIME ${{ github.run_number }}"
+        files: release-apk/cihuynime-v${{ env.VERSI }}.apk
+        tag_name: "v${{ env.VERSI }}"
+        name: "CIHUYNIME v${{ env.VERSI }}"
         body: |
           ### 🚀 What's New / Catatan Rilis:
           ${{ github.event.inputs.release_notes || 'Peningkatan performa dan perbaikan bug.' }}
