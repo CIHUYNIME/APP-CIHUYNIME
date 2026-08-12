@@ -1,10 +1,10 @@
-Name: Build and Release CIHUYNIME Mobile
+name: Build and Release CIHUYNIME Mobile
 
 on:
   workflow_dispatch:
     inputs:
       release_notes:
-        description: 'Catatan Rilis / What’s New (Opsional)'
+        description: 'Catatan Rilis / Whats New (Opsional)'
         required: false
         default: 'Peningkatan performa dan perbaikan bug.'
   push:
@@ -39,14 +39,10 @@ jobs:
     - name: Extract App Version
       id: get_version
       run: |
-        # Mengambil versionName dari build.gradle / build.gradle.kts
         VERSION=$(grep -E 'versionName' app/build.gradle* | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
-        
-        # Fallback jika gagal membaca file gradle
         if [ -z "$VERSION" ]; then
           VERSION="2.4"
         fi
-
         echo "VERSI=$VERSION" >> $GITHUB_ENV
         echo "Versi terdeteksi: $VERSION"
 
@@ -56,7 +52,6 @@ jobs:
     - name: Rename APK Output
       run: |
         mkdir -p release-apk
-        # Menghasilkan output persis cihuynime-v{versi}.apk
         cp app/build/outputs/apk/debug/*.apk release-apk/cihuynime-v${{ env.VERSI }}.apk
 
     - name: Upload APK Artifact
@@ -73,7 +68,7 @@ jobs:
         tag_name: "v${{ env.VERSI }}"
         name: "CIHUYNIME v${{ env.VERSI }}"
         body: |
-          ### 🚀 What's New / Catatan Rilis:
+          ### 🚀 Whats New / Catatan Rilis:
           ${{ github.event.inputs.release_notes || 'Peningkatan performa dan perbaikan bug.' }}
 
           ---
