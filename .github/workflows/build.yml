@@ -56,8 +56,8 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         files: release-apk/*.apk
-        tag_name: mobile-v1.0.${{ github.run_number }}
-        name: "CIHUYNIME v1.0.${{ github.run_number }}"
+        tag_name: mobile ${{ github.run_number }}
+        name: "CIHUYNIME ${{ github.run_number }}"
         body: |
           ### 🚀 What's New / Catatan Rilis:
           ${{ github.event.inputs.release_notes || 'Peningkatan performa dan perbaikan bug.' }}
